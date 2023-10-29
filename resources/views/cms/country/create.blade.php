@@ -39,7 +39,7 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Store</button>
+                <button type="botton" onclick="performStore()" class="btn btn-primary">Store</button>
                 <a href="{{ Route('countries.index') }}" class="btn btn-info">Back to Index</a>
 
               </div>
@@ -60,5 +60,14 @@
 
 
 @section('scripts')
+
+<script>
+    function performStore() {
+        let formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        formData.append('code', document.getElementById('code').value);
+        store('/cms/admin/countries', formData);
+    }
+</script>
 
 @endsection
