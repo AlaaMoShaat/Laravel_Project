@@ -12,6 +12,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\ViewerController;
@@ -40,6 +41,8 @@ Route::prefix('cms/')->middleware('guest:admin,author')->group(function () {
 
 Route::prefix('cms/admin')->middleware('auth:admin,author')->group(function () {
     Route::get('logout', [UserAuthController::class, 'logout'])->name('view.logout');
+    Route::get('change/password', [SettingController::class, 'changePassword'])->name('view.changePassword');
+    Route::post('update/password', [SettingController::class, 'updatePassword'])->name('updatePassword');
 });
 
 Route::prefix('cms/admin/')->middleware('auth:admin,author')->group(function () {
@@ -84,6 +87,8 @@ Route::prefix('cms/admin/')->middleware('auth:admin,author')->group(function () 
     Route::post('permissions_update/{id}', [PermissionController::class, 'update'])->name('permissions_update');
 
     Route::resource('roles.permissions', RolePermissionController::class);
+
+    Route::get('edit/profile', [UserAuthController::class, 'editProfile'])->name('editProfile');
 });
 
 

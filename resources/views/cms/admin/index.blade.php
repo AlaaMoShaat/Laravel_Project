@@ -76,10 +76,10 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                @can('Edit Admin')
+                                                {{-- @can('Edit Admin')
                                                     <a href="{{ Route('admins.edit', $admin->id) }}" type="button"
                                                         class="btn btn-info">Edit</a>
-                                                @endcan
+                                                @endcan --}}
                                                 @can('Delete Admin')
                                                     <button type="button"
                                                         onclick="performDestroy({{ $admin->id }}, this)"

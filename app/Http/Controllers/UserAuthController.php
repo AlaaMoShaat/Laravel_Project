@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
+use App\Models\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,8 +55,11 @@ class UserAuthController extends Controller
     {
     }
 
-    public function editProfile($id)
+    public function editProfile()
     {
+        $admins = Admin::findOrFail(Auth::guard('admin')->id());
+        $cities = City::all();
+        return response()->view('cms.auth.edit-profile', compact('admins', 'cities'));
     }
 
     public function updateProfile(Request $request, $id)

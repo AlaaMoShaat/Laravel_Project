@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -165,8 +166,17 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Admin $admin)
     {
-        $admins = Admin::destroy($id);
+        if ($admin->id == Auth::id()) {
+            return redirect()->route('admins.index')->withErrors(trans('cannot delete yoursef'));
+        } else {
+            $admin->user()->delete();
+            $isDeleted = $admin->delete();
+            return response()->json([
+                'icon' => 'success',
+                'title' => 'Admin is Deleted'
+            ]);
+        }
     }
 }

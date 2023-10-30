@@ -540,7 +540,7 @@
                         </li>
                         <li class="nav-header">SETTING</li>
                         <li class="nav-item">
-                            @if (Auth::guard('admin')->id())
+                            {{-- @if (Auth::guard('admin')->id())
                                 <a href="{{ Route('admins.edit', auth('admin')->user()->id) }}" class="nav-link">
                                     <i class="fas fa-user-edit nav-icon"></i>
                                     <p>Edit Your Profile</p>
@@ -550,11 +550,14 @@
                                     <i class="fas fa-user-edit nav-icon"></i>
                                     <p>Edit Your Profile</p>
                                 </a>
-                            @endif
-
+                            @endif --}}
+                            <a href="{{ Route('editProfile') }}" class="nav-link">
+                                <i class="fas fa-user-edit nav-icon"></i>
+                                <p>Edit Your Profile</p>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ Route('view.changePassword') }}" class="nav-link">
                                 <i class="fas fa-key nav-icon"></i>
                                 <p>Change Password</p>
                             </a>
