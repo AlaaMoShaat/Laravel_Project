@@ -12,7 +12,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::withCount('cities')->orderBy('id', 'desc')->paginate(10);
+        $countries = Country::withCount('cities')->filter(request(['search']))->orderBy('id', 'desc')->paginate(10);
         return response()->view('cms.country.index', compact('countries'));
     }
 

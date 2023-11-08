@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::orderBy('id', 'desc')->paginate(10);
+        $admins = Admin::orderBy('id', 'desc')->filter(request(['search']))->paginate(10);
         $this->authorize('viewAny', Admin::class);
         return response()->view('cms.admin.index', compact('admins'));
     }

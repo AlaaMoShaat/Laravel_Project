@@ -9,6 +9,12 @@ class Country extends Model
 {
     use HasFactory;
 
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+        }
+    }
     public function cities()
     {
         return $this->hasMany(City::class, 'country_id', 'id');

@@ -12,6 +12,12 @@ class Admin extends Authenticatable
 {
     use HasFactory, HasRoles, HasApiTokens;
 
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query->where('email', 'like', '%' . request('search') . '%');
+        }
+    }
     public function user()
     {
         return $this->morphOne(User::class, 'actor', 'actor_type', 'actor_id', 'id');

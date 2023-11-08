@@ -20,12 +20,11 @@ class SettingController extends Controller
         $guard = Auth('admin')->check() ? 'admin' : 'auther';
         $validator = Validator($request->all(), [
             'current_password' => 'required|string|min:6|max:25',
-            'new_password' => 'required|string|min:6|max:25|confirmed',
-            'confirm_password' => 'required|string|min:6|max:25',
+            'password' => 'required|string|min:6|max:25|confirmed',
         ]);
         if (!$validator->fails()) {
             $user = Auth('admin')->user();
-            $user->password = Hash::make($request->get('new_password'));
+            $user->password = Hash::make($request->get('password'));
             $isSaved = $user->save();
             if ($isSaved) {
                 return response()->json([

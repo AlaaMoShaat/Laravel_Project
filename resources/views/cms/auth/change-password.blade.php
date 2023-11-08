@@ -32,17 +32,17 @@
                                 <div class="form-group">
                                     <label for="current_password">Enter Current Password</label>
                                     <input type="password" class="form-control" id="current_password"
-                                        placeholder="Enter Current Password">
+                                        name="current_password" placeholder="Enter Current Password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="new_password">Enter New Password</label>
-                                    <input type="password" class="form-control" id="new_password"
+                                    <label for="password">Enter New Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
                                         placeholder="Enter New Password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirm_password">Enter Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirm_password"
-                                        placeholder="Enter Confirm Password">
+                                    <label for="password_confirmation">Enter Confirm Password</label>
+                                    <input type="password" class="form-control" name="password_confirmation"
+                                        id="password_confirmation" placeholder="Enter Confirm Password">
                                 </div>
                             </div>
                         </div>
@@ -76,8 +76,8 @@
     function performUpdate() {
         let formData = new FormData();
         formData.append('current_password', document.getElementById('current_password').value);
-        formData.append('new_password', document.getElementById('new_password').value);
-        formData.append('confirm_password', document.getElementById('confirm_password').value);
+        formData.append('password', document.getElementById('password').value);
+        formData.append('password_confirmation', document.getElementById('password_confirmation').value);
 
         store('/cms/admin/update/password', formData);
     }
